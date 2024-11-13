@@ -1,10 +1,15 @@
 #include "Speedometer.h"
 #include <string>
 
+const float MAX_SPEED = 200.0f;
+const float ANGLE_RANGE = 270.0f;
+const float ANGLE_OFFSET = 225.0f;
+const sf::Vector2f CENTER_POSITION(310, 205);
+
 Speedometer::Speedometer() : speed(0.0f) {}
 
 void Speedometer::increaseSpeed(float delta) {
-    if (speed < 200) {
+    if (speed < MAX_SPEED) {
         speed += delta;
     }
 }
@@ -26,6 +31,19 @@ float Speedometer::getSpeed() const {
 void Speedometer::draw(sf::RenderWindow &window, const sf::Font &font) {
 
     // Background circle
+    drawBackgroundCircles(window);
+
+    // Speed text labels
+    drawSpeedLabels(window, font);
+
+    // Speed indicator
+    drawSpeedIndicator(window);
+
+    // Speed text
+    drawSpeedText(window, font);
+}
+
+void Speedometer::drawBackgroundCircles(sf::RenderWindow &window) {
     sf::CircleShape outerCicle(100);
     outerCicle.setFillColor(sf::Color(50, 150, 50));
     outerCicle.setPosition(210, 110);
@@ -36,8 +54,9 @@ void Speedometer::draw(sf::RenderWindow &window, const sf::Font &font) {
 
     window.draw(outerCicle);
     window.draw(innterCicrlce);
+}
 
-    // Speed text labels
+void Speedometer::drawSpeedLabels(sf::RenderWindow &window, const sf::Font &font) {
     int maxSpeed = 200;
     int increment = 20;
     float radius = 80.0f; // Set radius for number positioning
@@ -63,9 +82,9 @@ void Speedometer::draw(sf::RenderWindow &window, const sf::Font &font) {
 
         window.draw(label);
     }
+}
 
-
-    // speed indicator
+void Speedometer::drawSpeedIndicator(sf::RenderWindow &window) {
     float angle = (speed / 200.0f) * 270.0f;
     sf::RectangleShape speedIndicator(sf::Vector2f(5, 80));
     speedIndicator.setFillColor(sf::Color::Red);
@@ -74,8 +93,9 @@ void Speedometer::draw(sf::RenderWindow &window, const sf::Font &font) {
     speedIndicator.setRotation(225 + angle);
 
     window.draw(speedIndicator);
+}
 
-    // Speed text
+void Speedometer::drawSpeedText(sf::RenderWindow &window, const sf::Font &font) {
     sf::Text speedText;
     speedText.setFont(font);
     speedText.setString("Speed: " + std::to_string(static_cast<int>(speed)) + " km/h");

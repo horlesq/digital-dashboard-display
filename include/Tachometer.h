@@ -15,6 +15,11 @@ public:
 
 private:
     float rpm;
+    
+    void drawBackgroundCircles(sf::RenderWindow &window);
+    void drawRPMLabels(sf::RenderWindow &window, const sf::Font &font);
+    void drawRPMIndicator(sf::RenderWindow &window);
+    void drawRPMText(sf::RenderWindow &window, const sf::Font &font);
 };
 
 #endif

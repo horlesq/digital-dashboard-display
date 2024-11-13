@@ -8,6 +8,7 @@
 class Dashboard {
     public:
         Dashboard();
+        
         void update(sf::RenderWindow &window);
         void draw(sf::RenderWindow &window);
 
@@ -15,8 +16,15 @@ class Dashboard {
         Speedometer speedometer;
         Tachometer tachometer;
         sf::RectangleShape accelPedal;
+        sf::Text accelText;
         sf::RectangleShape brakePedal;
+        sf::Text brakeText;
         sf::Font font;
+        
+        void initPedals();
+        void drawBackground(sf::RenderWindow &window);
+        void handleArrowKeysInput();
+        void handlePedalInput(sf::RenderWindow &window);
 
 };
 

@@ -16,6 +16,20 @@ float Tachometer::getRPM() const {
 
 void Tachometer::draw(sf::RenderWindow &window, const sf::Font &font) {
     // Background circle
+    drawBackgroundCircles(window);
+
+    // RPM text labels
+    drawRPMLabels(window, font);
+
+    // RPM indicator
+    drawRPMIndicator(window);
+
+    // RPM text
+    drawRPMText(window, font);
+}
+
+
+void Tachometer::drawBackgroundCircles(sf::RenderWindow &window) {
     sf::CircleShape outerCircle(80);
     outerCircle.setFillColor(sf::Color(50, 150, 50));
     outerCircle.setPosition(430, 150);
@@ -26,8 +40,9 @@ void Tachometer::draw(sf::RenderWindow &window, const sf::Font &font) {
     
     window.draw(outerCircle);
     window.draw(innerCircle);
+}
 
-    // RPM text labels
+void Tachometer::drawRPMLabels(sf::RenderWindow &window, const sf::Font &font) {
     int maxRPM = 6;
     int rpmIncrement = 1;
     float radius = 64.0f; // Radius for number positioning
@@ -53,8 +68,9 @@ void Tachometer::draw(sf::RenderWindow &window, const sf::Font &font) {
 
         window.draw(label);
     }
+}
 
-    // RPM indicator
+void Tachometer::drawRPMIndicator(sf::RenderWindow &window) {
     float angle = (rpm  / 6000.0f) * 180.0f;
     sf::RectangleShape rpmIndicator(sf::Vector2f(5, 60));
     rpmIndicator.setFillColor(sf::Color::Red);
@@ -63,8 +79,9 @@ void Tachometer::draw(sf::RenderWindow &window, const sf::Font &font) {
     rpmIndicator.setRotation(225 + angle);
 
     window.draw(rpmIndicator);
+}
 
-    // RPM text
+void Tachometer::drawRPMText(sf::RenderWindow &window, const sf::Font &font) {
     sf::Text rpmText;
     rpmText.setFont(font);
     rpmText.setString("RPM: " + std::to_string(static_cast<int>(rpm)));
