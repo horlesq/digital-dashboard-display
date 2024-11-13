@@ -1,0 +1,41 @@
+# Build directories
+/build/
+/bin/
+/Debug/
+/Release/
+
+/CMakeFiles/
+/CMakeCache.txt
+CMakeInstall.cmake
+Makefile
+cmake_install.cmake
+
+# VS Code settings
+.vscode/
+
+# Visual Studio files
+.vs/
+.vs2019/
+.vs2017/
+*.vcxproj
+*.vcxproj.user
+*.sln
+*.suo
+*.user
+*.db
+
+# SFML
+sfml-graphics-d-2.dll
+sfml-window-d-2.dll
+sfml-system-d-2.dll
+
+# Temporary files
+*.log
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
+.DS_Store
