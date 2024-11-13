@@ -2,6 +2,8 @@
 #define DASHBOARD_H
 
 #include <SFML/Graphics.hpp>
+#include "Speedometer.h"
+#include "Tachometer.h"
 
 class Dashboard {
     public:
@@ -10,8 +12,10 @@ class Dashboard {
         void draw(sf::RenderWindow &window);
 
     private:
-        float speed;
-        float rpm;
+        Speedometer speedometer;
+        Tachometer tachometer;
+        sf::Font font;
+
 };
 
 #endif
