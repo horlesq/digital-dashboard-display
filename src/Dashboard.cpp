@@ -20,6 +20,18 @@ void Dashboard::update() {
 
 
 void Dashboard::draw(sf::RenderWindow &window) {
+    sf::VertexArray gradient(sf::TrianglesFan, 4);
+    gradient[0].position = sf::Vector2f(0, 0);
+    gradient[1].position = sf::Vector2f(window.getSize().x, 0);
+    gradient[2].position = sf::Vector2f(window.getSize().x, window.getSize().y);
+    gradient[3].position = sf::Vector2f(0, window.getSize().y);
+    gradient[0].color = sf::Color(50, 50, 50);
+    gradient[1].color = sf::Color(0, 0, 0);
+    gradient[2].color = sf::Color(0, 0, 0);
+    gradient[3].color = sf::Color(50, 50, 50);
+    
+    window.draw(gradient);
+
     speedometer.draw(window, font);
     tachometer.draw(window, font);
 }
