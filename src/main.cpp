@@ -12,7 +12,7 @@ int main() {
                 window.close();
         }
 
-        dashboard.update();
+        dashboard.update(window);
 
         window.clear();
         dashboard.draw(window);

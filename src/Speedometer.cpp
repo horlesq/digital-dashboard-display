@@ -31,7 +31,7 @@ void Speedometer::draw(sf::RenderWindow &window, const sf::Font &font) {
     outerCicle.setPosition(210, 110);
 
     sf::CircleShape innterCicrlce(90);
-    innterCicrlce.setFillColor(sf::Color(50, 250, 50));
+    innterCicrlce.setFillColor(sf::Color::Green);
     innterCicrlce.setPosition(220, 120);
 
     window.draw(outerCicle);

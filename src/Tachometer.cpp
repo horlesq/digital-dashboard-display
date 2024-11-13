@@ -21,7 +21,7 @@ void Tachometer::draw(sf::RenderWindow &window, const sf::Font &font) {
     outerCircle.setPosition(430, 150);
 
     sf::CircleShape innerCircle(70); 
-    innerCircle.setFillColor(sf::Color(50, 250, 50));
+    innerCircle.setFillColor(sf::Color::Green);
     innerCircle.setPosition(440, 160);
     
     window.draw(outerCircle);
@@ -47,7 +47,7 @@ void Tachometer::draw(sf::RenderWindow &window, const sf::Font &font) {
         sf::Text label;
         label.setFont(font);
         label.setString(std::to_string(rpmLabel));
-        label.setCharacterSize(10);
+        label.setCharacterSize(12);
         label.setFillColor(sf::Color::Black);
         label.setPosition(labelPos.x - label.getLocalBounds().width / 2, labelPos.y - label.getLocalBounds().height / 2);
 

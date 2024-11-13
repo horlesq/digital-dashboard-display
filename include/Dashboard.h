@@ -8,12 +8,14 @@
 class Dashboard {
     public:
         Dashboard();
-        void update();
+        void update(sf::RenderWindow &window);
         void draw(sf::RenderWindow &window);
 
     private:
         Speedometer speedometer;
         Tachometer tachometer;
+        sf::RectangleShape accelPedal;
+        sf::RectangleShape brakePedal;
         sf::Font font;
 
 };
