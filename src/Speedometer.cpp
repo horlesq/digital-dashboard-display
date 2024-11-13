@@ -37,6 +37,34 @@ void Speedometer::draw(sf::RenderWindow &window, const sf::Font &font) {
     window.draw(outerCicle);
     window.draw(innterCicrlce);
 
+    // Speed text labels
+    int maxSpeed = 200;
+    int increment = 20;
+    float radius = 80.0f; // Set radius for number positioning
+    sf::Vector2f center(310, 205); // Center position of the speedometer
+
+    for (int speedLabel = 0; speedLabel <= maxSpeed; speedLabel += increment) {
+        // Calculate angle for each label
+        float angle = (speedLabel / static_cast<float>(maxSpeed)) * 270.0f;
+        float radians = (225 - angle) * (3.14159f / 180.0f); // Convert to radians for SFML
+
+        // Calculate label position on the circle
+        sf::Vector2f labelPos;
+        labelPos.x = center.x + std::cos(radians) * radius;
+        labelPos.y = center.y - std::sin(radians) * radius;
+
+        // Create text for each speed label
+        sf::Text label;
+        label.setFont(font);
+        label.setString(std::to_string(speedLabel));
+        label.setCharacterSize(12);
+        label.setFillColor(sf::Color::Black);
+        label.setPosition(labelPos.x - label.getLocalBounds().width / 2, labelPos.y - label.getLocalBounds().height / 2);
+
+        window.draw(label);
+    }
+
+
     // speed indicator
     float angle = (speed / 200.0f) * 270.0f;
     sf::RectangleShape speedIndicator(sf::Vector2f(5, 80));

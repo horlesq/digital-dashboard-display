@@ -27,6 +27,33 @@ void Tachometer::draw(sf::RenderWindow &window, const sf::Font &font) {
     window.draw(outerCircle);
     window.draw(innerCircle);
 
+    // RPM text labels
+    int maxRPM = 6;
+    int rpmIncrement = 1;
+    float radius = 64.0f; // Radius for number positioning
+    sf::Vector2f center(510, 225); // Center position of the tachometer
+
+    for (int rpmLabel = 0; rpmLabel <= maxRPM; rpmLabel += rpmIncrement) {
+        // Calculate angle for each label
+        float angle = (rpmLabel / static_cast<float>(maxRPM)) * 180.0f;
+        float radians = (225 - angle) * (3.14159f / 180.0f); // Convert to radians for SFML
+
+        // Calculate label position on the circle
+        sf::Vector2f labelPos;
+        labelPos.x = center.x + std::cos(radians) * radius;
+        labelPos.y = center.y - std::sin(radians) * radius;
+
+        // Create text for each RPM label
+        sf::Text label;
+        label.setFont(font);
+        label.setString(std::to_string(rpmLabel));
+        label.setCharacterSize(10);
+        label.setFillColor(sf::Color::Black);
+        label.setPosition(labelPos.x - label.getLocalBounds().width / 2, labelPos.y - label.getLocalBounds().height / 2);
+
+        window.draw(label);
+    }
+
     // RPM indicator
     float angle = (rpm  / 6000.0f) * 180.0f;
     sf::RectangleShape rpmIndicator(sf::Vector2f(5, 60));
