@@ -1,5 +1,5 @@
 
-# City Breaks Diary
+# Digital Dashboard Display
 
 A C++ application using SFML to create a digital dashboard display that simulates a vehicle speedometer and tachometer. This project allows users to visualize speed and RPM levels dynamically, with responsive controls for acceleration and braking. 
 
